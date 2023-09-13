@@ -61,10 +61,16 @@ class ProductCountResourcePlugin extends AbstractPlugin implements ApiResourcePl
     public function find(ApiRequestTransfer $apiRequestTransfer)
     {
         $result = new ApiCollectionTransfer();
-        $result->addData(
+        $result->setData(
             [
-                'active_products' => $this->getFacade()->getActiveProductCount(),
-                'inactive_products' =>  $this->getFacade()->getInactiveProductCount(),
+                [
+                    'name' => 'Active',
+                    'value' => $this->getFacade()->getActiveProductCount()
+                ],
+                [
+                    'name' => 'Inactive',
+                    'value' => $this->getFacade()->getInactiveProductCount()
+                ],
             ]
         );
 

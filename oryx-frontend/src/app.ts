@@ -3,6 +3,7 @@ import { storefrontFeatures } from '@spryker-oryx/presets/storefront';
 import { storefrontTheme } from '@spryker-oryx/themes';
 import {provideExperienceData} from '@spryker-oryx/experience';
 import {pieComponent} from "./components/pie/pie.def";
+import {pie2Component} from "./components/pie2/pie2.def";
 import {blankComponent} from "./components/blank/blank.def";
 
 export const app = appBuilder()
@@ -10,6 +11,7 @@ export const app = appBuilder()
     .withTheme(storefrontTheme)
     .withEnvironment(import.meta.env)
     .withComponents([pieComponent])
+    .withComponents([pie2Component])
     .withComponents([blankComponent])
     .withProviders([
         provideExperienceData({
@@ -18,6 +20,13 @@ export const app = appBuilder()
                 type: "replace",
             },
             type: "oryx-pie",
+        }),
+        provideExperienceData({
+            merge: {
+                selector: "oryx-pie",
+                type: "after",
+            },
+            type: "oryx-pie2",
         }),
         provideExperienceData({
             merge: {
