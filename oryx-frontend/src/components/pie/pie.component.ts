@@ -19,10 +19,10 @@ export class PieComponent extends LitElement {
     }
 
     render() {
-        const pieHtml = this.pieChart();
+        const pieHtml = this.barchart();
 
         return html`
-            <div>${pieHtml}</div>
+            <div><h3 style="text-align:center">Most selling products</h3>${pieHtml}</div>
             `;
     }
 
@@ -90,6 +90,79 @@ export class PieComponent extends LitElement {
                 .text(d => d.data.total.toLocaleString("en-US")));
 
         // Append the SVG element.
+        return svg.node();
+    }
+
+
+
+    barchart() {
+        // Specify the chart’s dimensions, based on a bar’s height.
+        const barHeight = 25;
+        const marginTop = 30;
+        const marginRight = 600;
+        const marginBottom = 10;
+        const marginLeft = 100;
+        const width = 928;
+        const height = Math.ceil((this.data.length + 0.1) * barHeight) + marginTop + marginBottom;
+
+        // Create the scales.
+        const x = d3.scaleLinear()
+            .domain([0, d3.max(this.data, d => d.total)])
+            .range([marginLeft, width - marginRight]);
+
+        const y = d3.scaleBand()
+            .domain(d3.sort(this.data, d => -d.total).map(d => d.sku))
+            .rangeRound([marginTop, height - marginBottom])
+            .padding(0.1);
+
+        // Create a value format.
+        const format = x.tickFormat(20, "\d");
+
+        // Create the SVG container.
+        const svg = d3.create("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height])
+            .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif; padding:20px");
+
+        // Append a rect for each name.
+        svg.append("g")
+            .attr("fill", "silver")
+            .selectAll()
+            .data(this.data)
+            .join("rect")
+            .attr("x", x(0))
+            .attr("y", (d) => y(d.sku))
+            .attr("width", (d) => x(d.total) - x(0))
+            .attr("height", y.bandwidth());
+
+        // Append a label for each name.
+        svg.append("g")
+            .attr("fill", "white")
+            .attr("text-anchor", "end")
+            .selectAll()
+            .data(this.data)
+            .join("text")
+            .attr("x", (d) => x(d.total))
+            .attr("y", (d) => y(d.sku) + y.bandwidth() / 2)
+            .attr("dy", "0.35em")
+            .attr("dx", -4)
+            .text((d) => format(d.total))
+            .call((text) => text.filter(d => x(d.total) - x(0) < 20) // short bars
+                .attr("dx", +4)
+                .attr("fill", "black")
+                .attr("text-anchor", "start"));
+
+        // Create the axes.
+        svg.append("g")
+            .attr("transform", `translate(0,${marginTop})`)
+            .call(d3.axisTop(x).ticks(width / 80, "\d"))
+            .call(g => g.select(".domain").remove());
+
+        svg.append("g")
+            .attr("transform", `translate(${marginLeft},0)`)
+            .call(d3.axisLeft(y).tickSizeOuter(0));
+
         return svg.node();
     }
 }

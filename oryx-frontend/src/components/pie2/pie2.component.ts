@@ -21,7 +21,7 @@ export class Pie2Component extends LitElement {
         const pieHtml = this.pieChart();
 
         return html`
-            <div>${pieHtml}</div>
+            <div><h3 style="text-align:center">Enabled vs disabled products</h3>${pieHtml}</div>
             `;
     }
 
