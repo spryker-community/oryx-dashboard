@@ -10,9 +10,12 @@ export class PieComponent extends LitElement {
     constructor() {
         super();
 
-        fetch(this.backEndUrl)
-            .then((response) => response.json())
-            .then(data => this.data = data.data);
+
+        var intervalId = setInterval((obj: this) => {
+            fetch(this.backEndUrl)
+                .then((response) => response.json())
+                .then(data => this.data = data.data);
+        }, 5000);
     }
 
     render() {
