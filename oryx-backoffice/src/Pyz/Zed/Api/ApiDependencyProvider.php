@@ -2,6 +2,8 @@
 
 namespace Pyz\Zed\Api;
 
+use Pyz\Zed\MostSellingProducts\Communication\Plugin\MostSellingProductsApiResourcePlugin;
+use Pyz\Zed\MostSellingProducts\Communication\Plugin\MostSellingProductsApiValidatorPlugin;
 use Pyz\Zed\ProductCount\Communication\Plugin\Api\ProductCountResourcePlugin;
 use Spryker\Zed\Api\ApiDependencyProvider as SprykerApiDependencyProvider;
 use Spryker\Zed\Api\Communication\Plugin\ApiRequestTransferFilterHeaderDataPlugin;
@@ -27,7 +29,17 @@ class ApiDependencyProvider extends SprykerApiDependencyProvider
     {
         return [
             new ProductCountResourcePlugin(),
+            new MostSellingProductsApiResourcePlugin(),
         ];
     }
 
+    /**
+     * @return array<\Spryker\Zed\ApiExtension\Dependency\Plugin\ApiValidatorPluginInterface>
+     */
+    protected function getApiValidatorPluginCollection()
+    {
+        return [
+            new MostSellingProductsApiValidatorPlugin(),
+        ];
+    }
 }
