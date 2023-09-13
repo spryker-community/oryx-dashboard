@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Api;
 
+use Pyz\Zed\ProductCount\Communication\Plugin\Api\ProductCountResourcePlugin;
 use Spryker\Zed\Api\ApiDependencyProvider as SprykerApiDependencyProvider;
 use Spryker\Zed\Api\Communication\Plugin\ApiRequestTransferFilterHeaderDataPlugin;
 use Spryker\Zed\Api\Communication\Plugin\ApiRequestTransferFilterServerDataPlugin;
@@ -18,4 +19,15 @@ class ApiDependencyProvider extends SprykerApiDependencyProvider
             new ApiRequestTransferFilterHeaderDataPlugin(),
         ];
     }
+
+    /**
+     * @return array<\Spryker\Zed\Api\Dependency\Plugin\ApiResourcePluginInterface>
+     */
+    protected function getApiResourcePluginCollection()
+    {
+        return [
+            new ProductCountResourcePlugin(),
+        ];
+    }
+
 }
