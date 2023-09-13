@@ -21,7 +21,7 @@ export const app = appBuilder()
         }),
         provideExperienceData({
             merge: {
-                selector: "oryx-content-image",
+                selector: "oryx-composition",
                 type: "replace",
             },
             type: "oryx-blank",
