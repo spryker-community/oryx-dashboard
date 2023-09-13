@@ -2,8 +2,8 @@
 
 namespace Pyz\Zed\Api;
 
-use Pyz\Zed\MostSellingProducts\Communication\Plugin\MostSellingProductsApiResourcePlugin;
-use Pyz\Zed\MostSellingProducts\Communication\Plugin\MostSellingProductsApiValidatorPlugin;
+use Pyz\Zed\MostSellingProducts\Communication\Plugin\Api\MostSellingProductsApiResourcePlugin;
+use Pyz\Zed\MostSellingProducts\Communication\Plugin\Api\MostSellingProductsApiValidatorPlugin;
 use Pyz\Zed\ProductCount\Communication\Plugin\Api\ProductCountResourcePlugin;
 use Spryker\Zed\Api\ApiDependencyProvider as SprykerApiDependencyProvider;
 use Spryker\Zed\Api\Communication\Plugin\ApiRequestTransferFilterHeaderDataPlugin;

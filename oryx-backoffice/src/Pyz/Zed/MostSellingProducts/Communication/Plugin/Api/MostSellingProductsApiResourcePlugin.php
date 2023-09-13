@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\MostSellingProducts\Communication\Plugin;
+namespace Pyz\Zed\MostSellingProducts\Communication\Plugin\Api;
 
 use Generated\Shared\Transfer\ApiCollectionTransfer;
 use Generated\Shared\Transfer\ApiDataTransfer;
@@ -9,7 +9,6 @@ use Generated\Shared\Transfer\ApiValidationErrorTransfer;
 use Generated\Shared\Transfer\MostSellingProductsFilterTransfer;
 use Spryker\Zed\Api\Dependency\Plugin\ApiResourcePluginInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method \Pyz\Zed\MostSellingProducts\Business\MostSellingProductsFacadeInterface getFacade()

@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Pyz\Zed\MostSellingProducts\Communication\Plugin;
+namespace Pyz\Zed\MostSellingProducts\Communication\Plugin\Api;
 
 use Generated\Shared\Transfer\ApiRequestTransfer;
 use Generated\Shared\Transfer\ApiValidationErrorTransfer;
